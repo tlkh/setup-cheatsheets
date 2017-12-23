@@ -1,6 +1,7 @@
 # Quick Setup for LEMP
 **L**inux/**N**ginx/**m**ysql/**P**HP
-Light and fast stack for Wordpress on constrained platforms such as SBCs (Raspberry Pi) or $5 VPS's.
+
+Light and fast stack for Wordpress on constrained platforms such as SBCs (Raspberry Pi) or your $5 VPS.
 
 ## Before We Start
 
