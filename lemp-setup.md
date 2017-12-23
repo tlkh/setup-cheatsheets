@@ -1,29 +1,39 @@
-## perform the usual dance to get up to date
+# Quick Setup for LEMP
+**L**inux/**N**ginx/**m**ysql/**P**HP
+Light and fast stack for Wordpress on constrained platforms such as SBCs (Raspberry Pi) or $5 VPS's.
 
-sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y
-sudo apt-get autoremove
+## Before We Start
 
-sudo apt-get install php7.0 php7.0-curl php7.0-gd
-sudo apt-get install php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip
+`sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y`
 
-sudo nano /etc/php/7.0/fpm/pool.d/www.conf
+`sudo apt-get autoremove`
 
-## edit the following lines:
+`sudo apt-get install php7.0 php7.0-curl php7.0-gd`
+
+`sudo apt-get install php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip`
+
+## PHP Configuration
+
+`sudo nano /etc/php/7.0/fpm/pool.d/www.conf`
+
+Edit the following lines:
+
+```
 user = pi
 group = pi
-## 
+```
+(Press `CTRL-X` to save)
+## Install Nginx
 
-sudo apt-get install nginx
+`sudo apt-get install nginx -y`
 
-## next we will setup nginx config
+## Nginx Configuration
 
+`sudo nano /etc/nginx/sites-available/SITE_NAME`
 
-sudo touch /etc/nginx/sites-available/your_site
+Paste the following contents in:
 
-sudo nano /etc/nginx/sites-available/your_site
-
-### FILE BEGIN  ###
-server {
+```server {
     #listen 80;
     index index.html index.php;
 
@@ -57,51 +67,68 @@ server {
     ## Begin - Security
     # deny all direct access for these folders
     location ~* /(.git|cache|bin|logs|backups|tests)/.*$ { return 403; }
+    
     # deny running scripts inside core system folders
     location ~* /(system|vendor)/.*\.(txt|xml|md|html|yaml|php|pl|py|cgi|twig|sh|bat)$ { return 403; }
+    
     # deny running scripts inside user folder
     location ~* /user/.*\.(txt|md|yaml|php|pl|py|cgi|twig|sh|bat)$ { return 403; }
+    
     # deny access to specific files in the root folder
     location ~ /(LICENSE.txt|composer.lock|composer.json|nginx.conf|web.config|htaccess.txt|\.htaccess) { return 403; }
     ## End - Security
-}
-### FILE END  ###
+	}
+```
 
-cd /etc/nginx/sites-enabled/
-sudo rm default
-sudo ln -s ../sites-available/survey
+Now Nginx is configured properly for LEMP. 
 
-cd ~
-mkdir www
-cd www
+## Enabling Nginx
 
-(now you have your directory /home/pi/www for example)
+`cd /etc/nginx/sites-enabled/`
 
-sudo service apache2 stop
-sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common
+`sudo rm default`
 
-sudo reboot now
+`sudo ln -s ../sites-available/SITE_NAME`
 
-sudo apt-get install mysql-server php7.0-fpm php7.0-mysql
-sudo apt-get install libmysqlclient-dev 
+`cd ~`
 
-sudo reboot now
+`mkdir www`
 
-touch ~/www/info.php
-nano ~/www/info.php
+`cd www`
 
-## edit the following
+Now you have your web directory, `/home/pi/www` for example. Now's the time to make sure we have also gotten rid of Apache.
+
+`sudo service apache2 stop`
+
+`sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common`
+
+`nano ~/www/info.php`
+
+Add in the following lines:
+
+```
 <?php phpinfo(); ?>
+```
 
-## navigate to your device's IP address to see the PHP info page
+Navigate to your device's IP address to see the PHP info page. If you don't see anything, try rebooting: `sudo reboot`
 
-sudo apt-get install phpmyadmin
+## Installing mysql
 
-sudo nano /etc/nginx/sites-available/your_site
+`sudo apt-get install mysql-server php7.0-fpm php7.0-mysql phpmyadmin`
 
-# add the following lines to the end:
+`sudo apt-get install libmysqlclient-dev`
 
-### START ###
+Now would be a good time to reboot (just to be safe): `sudo reboot`
+
+## Configuring phpMyAdmin
+
+`sudo nano /etc/nginx/sites-available/your_site`
+
+Add the following lines to the end:
+(Quick tip: press `CTRL-V` to skip down a full screen.)
+
+```
+### PHPMYADMIN START ###
 server {
 	listen 6969;
 	server_name localhost;
@@ -119,12 +146,18 @@ server {
 		include /etc/nginx/fastcgi_params;
 	} 
 }
-### END ###
+### PHPMYADMIN END ###
+```
+phpMyAdmin will be accesible on port 6969
 
+### Trouble logging in via phpMyAdmin?
 
-# if you have trouble logging in via phpMyAdmin
-sudo mysql -u root -p
+`sudo mysql -u root -p`
 
-CREATE USER 'your_id'@'localhost' IDENTIFIED BY 'yourPassword';
-GRANT ALL PRIVILEGES ON *.* TO 'your_id'@'localhost';
-FLUSH PRIVILEGES;
+In the mysql console:
+
+`CREATE USER 'your_id'@'localhost' IDENTIFIED BY 'yourPassword';`
+
+`GRANT ALL PRIVILEGES ON *.* TO 'your_id'@'localhost';`
+
+`FLUSH PRIVILEGES;`
