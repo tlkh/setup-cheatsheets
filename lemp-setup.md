@@ -34,7 +34,8 @@ group = pi
 
 Paste the following contents in:
 
-```server {
+```
+server {
     #listen 80;
     index index.html index.php;
 
