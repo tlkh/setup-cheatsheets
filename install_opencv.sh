@@ -2,7 +2,7 @@
 echo "Installing OpenCV 3.4.0. This will take a while."  
 echo "Installing supporting packages."
 echo "Updating repositories first"  
-sudo apt update
+sudo apt-get update
 echo "Done. Proceeding with install." 
 sudo apt-get install build-essential cmake pkg-config -y
 sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev -y
@@ -11,7 +11,7 @@ sudo apt-get install libxvidcore-dev libx264-dev -y
 sudo apt-get install libgtk2.0-dev -y
 sudo apt-get install libatlas-base-dev gfortran -y
 sudo apt-get install python-dev python3-dev python-pip python3-pip -y
-sudo apt clean -y
+sudo apt-get clean -y
 echo "Done."
 cd ~
 echo "Downloading OpenCV 3.4.0 sources (including opencv_contrib)."
