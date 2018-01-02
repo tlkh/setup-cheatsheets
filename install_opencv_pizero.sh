@@ -21,7 +21,7 @@ echo "Extracting archives."
 unzip opencv.zip
 unzip opencv_contrib.zip
 echo "Installing numpy"
-pip3 install numpy
+sudo apt install python3-numpy -y
 echo "Deleting pip cache"
 sudo rm -rf ~/.cache/pip
 echo "Preparing to build OpenCV"
@@ -30,20 +30,18 @@ mkdir build
 cd build
 echo "Not building examples and tests"
 echo "Including contrib modules"
-echo "Including NEON and VFPV3 optimisations (RPi 3)"
+#echo "Including NEON and VFPV3 optimisations (RPi 3)"
 sudo make clean
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.4.0/modules \
-    -D ENABLE_NEON=ON \
-    -D ENABLE_VFPV3=ON \
     -D BUILD_TESTS=OFF \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
     -D BUILD_EXAMPLES=OFF ..
 echo "Now compiling OpenCV..."
 echo "This will take QUITE A WHILE!!"
-echo "(dual core build - recommended for RPi 2/3)"
-make -j2 # -j4 (quad core build)
+echo "(single core build - recommended for RPi 0)"
+make # -j4 (quad core build)
 echo "Congratulations, it is done. Installing now."
 sudo make install
 sudo ldconfig
