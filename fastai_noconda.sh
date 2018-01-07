@@ -63,7 +63,7 @@ echo 'Done installing GPU drivers'
 
 echo 'Installing PyTorch linux/p3.6/CUDA8...'
 sudo pip3.6 install http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl 
-pip3 install torchvision
+sudo pip3.6 install torchvision torchtext
 
 echo 'Installing Python 3.6 as default Python 3 kernel for Jupyter Notebook.'
 python3.6 -m ipykernel install —user
@@ -85,6 +85,12 @@ echo 'Linking directories.'
 cd ../fastai/courses/dl1/
 ln -s ~/data ./
 echo 'Done!'
+
+echo 'Whoopie permissions issues!'
+cd ~
+sudo chown -R ubuntu:ubuntu fastai
+sudo chown -R ubuntu:ubuntu data
+echo 'Fixed'
 
 echo 'Instance will now reboot. SSH session will disconnect.'
 echo 'Before we go...'
