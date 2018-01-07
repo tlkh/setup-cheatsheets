@@ -75,7 +75,7 @@ python3.6 -m ipykernel install —user
 cd ~
 
 echo 'Downloading data files.'
-
+sudo apt install git -y
 echo '(1/2) - Cloning main fastai repository from GitHub...'
 git clone https://github.com/fastai/fastai.git
 
