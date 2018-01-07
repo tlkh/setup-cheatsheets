@@ -84,4 +84,5 @@ cd ../fastai/courses/dl1/
 ln -s ~/data ./
 echo 'Done!'
 
+echo 'Instance will now reboot. SSH session will disconnect.'
 sudo reboot
