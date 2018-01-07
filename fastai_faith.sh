@@ -22,6 +22,8 @@ sudo apt install python3.6 python3.6-dev -y
 echo 'Setting up pip3.6'
 curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
 echo 'Now installing Python 3.6 libraries:'
+echo '(0/3) - Upgrading setuptools pip wheel'
+sudo pip3.6 install setuptools pip wheel --upgrade
 echo '(1/3) - tqdm graphviz numpy scipy matplotlib jupyter ipywidgets pillow'
 sudo pip3.6 install tqdm graphviz numpy scipy matplotlib jupyter ipywidgets pillow
 echo '(2/3) - bcolz seaborn isoweek pandas sklearn'
