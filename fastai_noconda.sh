@@ -85,4 +85,8 @@ ln -s ~/data ./
 echo 'Done!'
 
 echo 'Instance will now reboot. SSH session will disconnect.'
+echo 'Before we go...'
+echo 'To use SSH tunnel for Jupyter, open Terminal on your Mac/Linux computer and run the following command:'
+echo 'ssh -N -L localhost:8887:localhost:8888 ubuntu@xxx.xxx.xxx.xxx (instance IP address)'
+echo 'Then you will be able to access Jupyter Notebook on your laptop at "localhost:8887"'
 sudo reboot
