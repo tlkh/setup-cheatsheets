@@ -32,6 +32,7 @@ echo '... generating config'
 jupyter notebook --generate-config
 echo 'Jupyter Notebook will be made accessible from:'
 sudo ifconfig | grep inet
+sudo rm -R ~/.jupyter
 echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
 echo "c.NotebookApp.open_browser = False" >> ~/.jupyter/jupyter_notebook_config.py
 echo 'Done!'
@@ -46,6 +47,7 @@ sudo apt -y install qtdeclarative5-dev qml-module-qtquick-controls
 sudo add-apt-repository ppa:graphics-drivers/ppa -y
 sudo apt update
 cd ~/downloads/
+sudo rm cuda-repo-ubuntu1604_9.0.176-1_amd64.deb cudnn-9.1-linux-x64-v7.tgz
 echo '(1/3 - Downloading CUDA 9.0)'
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
 sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
@@ -73,8 +75,10 @@ cd ~
 echo 'Downloading data files.'
 sudo apt install git -y
 echo '(1/2) - Cloning main fastai repository from GitHub...'
+sudo rm -R fastai
 git clone https://github.com/fastai/fastai.git
 
+sudo rm -R data
 mkdir data
 cd data
 echo '(2/2) - Downloading dogscats dataset...'
