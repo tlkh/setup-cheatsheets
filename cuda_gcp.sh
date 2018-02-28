@@ -13,15 +13,15 @@ sudo apt install python3-dev python3-pip python-dev python-pip -y
 echo 'Now installing Python 3 libraries:'
 sudo pip3 install setuptools pip wheel --upgrade
 sudo pip3 install numpy scipy matplotlib jupyter ipywidgets pillow
-sudo pip3 install bcolz seaborn pandas sklearn
+sudo pip3 install bcolz seaborn pandas sklearn keras tensorflow-gpu
 sudo pip3 install opencv-contrib-python
 echo '... enabling widgets for Jupyter'
 jupyter nbextension enable --py widgetsnbextension --sys-prefix
 echo '... generating config'
+sudo rm -R ~/.jupyter
 jupyter notebook --generate-config
 echo 'Jupyter Notebook will be made accessible from:'
 sudo ifconfig | grep inet
-sudo rm -R ~/.jupyter
 echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
 echo "c.NotebookApp.open_browser = False" >> ~/.jupyter/jupyter_notebook_config.py
 echo 'Done!'
