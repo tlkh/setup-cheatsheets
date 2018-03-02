@@ -43,7 +43,7 @@ sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
 sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 sudo apt update
 sudo apt install cuda -y
-echo '(2/3 - Downloading cuDNN 9.1)'
+echo '(2/3 - Downloading cuDNN 7.0)'
 wget http://files.fast.ai/files/cudnn-9.1-linux-x64-v7.tgz
 tar xf cudnn-9.1-linux-x64-v7.tgz
 echo '(3/3 - Moving files to proper paths)'
