@@ -2,7 +2,7 @@
 echo 'Updating repository...'
 sudo apt update
 echo 'Upgrading packages...'
-sudo apt update -y && sudo apt dist-update -y
+sudo apt update && sudo apt dist-update -y
 echo 'Cleaning up...'
 sudo apt autoremove -y && sudo apt clean
 echo 'Done! Moving on with install.'
