@@ -2,13 +2,13 @@
 echo 'Updating repository...'
 sudo apt update
 echo 'Upgrading packages...'
-sudo apt update && sudo apt dist-update -y
+sudo apt upgrade -y && sudo apt dist-upgrade -y
 echo 'Cleaning up...'
 sudo apt autoremove -y && sudo apt clean
 echo 'Done! Moving on with install.'
 
 echo 'Installing Python (system default, probably 3.5) ...'
-sudo apt install python3-dev python3-pip python-dev python-pip -y
+sudo apt install git python3-dev python3-pip python-dev python-pip -y
 
 echo 'Now installing Python 3 libraries:'
 sudo pip3 install setuptools pip wheel --upgrade
