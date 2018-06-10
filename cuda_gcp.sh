@@ -40,7 +40,7 @@ cd ~/downloads/
 sudo rm *
 echo '(1/3 - Downloading CUDA 9.2)'
 wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64
-sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64
 sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 sudo apt update
 sudo apt install cuda -y
