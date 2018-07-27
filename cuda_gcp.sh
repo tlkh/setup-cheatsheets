@@ -17,7 +17,7 @@ sudo pip3 install bcolz seaborn pandas sklearn keras tensorflow
 sudo pip3 install opencv-contrib-python
 sudo rm -R ~/.jupyter
 echo '... enabling widgets for Jupyter'
-jupyter nbextension enable --py widgetsnbextension --sys-prefix
+sudo jupyter nbextension enable --py widgetsnbextension --sys-prefix
 echo '... generating config'
 jupyter notebook --generate-config
 echo 'Jupyter Notebook will be made accessible from:'
