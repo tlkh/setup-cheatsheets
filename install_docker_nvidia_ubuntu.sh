@@ -62,7 +62,7 @@ echo "\n###\n"
 echo "Testing nvidia-docker"
 echo "\n###\n"
 
-docker run --runtime=nvidia --rm nvidia/9.0-runtime-ubuntu16.04 nvidia-smi
+docker run --runtime=nvidia --rm nvidia/cuda:9.0-runtime-ubuntu16.04 nvidia-smi
 
 echo "\n###\n"
 echo "Finished with no errors."
