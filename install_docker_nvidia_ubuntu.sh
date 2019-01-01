@@ -4,7 +4,7 @@ echo "Installation script for Docker CE and nvidia-docker on Ubuntu 16+"
 
 echo "Set non-interactive frontend"
 echo "Script will run without any prompts"
-DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND=noninteractive
 
 echo "\n###\n"
 echo "Installing prerequisites for Docker CE"
