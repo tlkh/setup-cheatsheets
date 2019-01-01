@@ -13,6 +13,7 @@ echo "\n###\n"
 apt-get update
 apt-get remove docker docker-engine docker.io -y
 apt-get install -y \
+    apt-utils \
     apt-transport-https \
     ca-certificates \
     curl \
