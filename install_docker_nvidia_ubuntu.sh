@@ -29,8 +29,6 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-apt-get autoremove -y && apt-get clean
-
 echo "\n###\n"
 echo "Installing Docker CE"
 echo "Version: Latest release"
